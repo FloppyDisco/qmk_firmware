@@ -60,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_EXLM,        KC_AT,          KC_HASH,        KC_DLR,         KC_PERC,                                        KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_LPRN,        KC_RPRN,        KC_TRANSPARENT,
     KC_TILD,        KC_GRAVE,       KC_NO,          KC_HASH,        KC_NO,          KC_NO,                                          KC_CIRC,        KC_RPRN,        KC_RCBR,        KC_RBRC,        KC_COLN,        KC_TRANSPARENT,
     KC_TRANSPARENT, KC_EXLM,        KC_AT,          KC_EQUAL,       KC_DLR,         KC_PERC,                                        KC_AMPR,        KC_LPRN,        KC_LCBR,        KC_LBRC,        KC_ASTR,        KC_DQUO,
-    KC_TRANSPARENT, KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_BSLS,        KC_SLASH,       KC_LABK,        KC_RABK,        KC_QUES,        KC_PIPE,
+    KC_TRANSPARENT, KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_QUES,        KC_PIPE,        KC_LABK,        KC_RABK,        KC_NO,          KC_NO,
                                                     MO(3),          KC_TRANSPARENT,                                 LT(6,KC_ENTER), KC_TRANSPARENT
   ),
   [3] = LAYOUT_voyager(
@@ -228,42 +228,42 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case ST_MACRO_0:
     if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_LEFT)) SS_DELAY(MACRO_DELAY) SS_LALT(SS_TAP(X_RIGHT)) SS_DELAY(MACRO_DELAY) SS_LALT(SS_LSFT(SS_TAP(X_LEFT))) SS_DELAY(MACRO_DELAY) SS_LGUI(SS_TAP(X_C)));
+      SEND_STRING(SS_LALT(SS_TAP(X_LEFT)) SS_DELAY(100) SS_LALT(SS_TAP(X_RIGHT)) SS_DELAY(100) SS_LALT(SS_LSFT(SS_TAP(X_LEFT))) SS_DELAY(100) SS_LGUI(SS_TAP(X_C)));
     }
     break;
     case ST_MACRO_1:
     if (record->event.pressed) {
-      SEND_STRING(SS_LGUI(SS_TAP(X_LEFT)) SS_DELAY(MACRO_DELAY) SS_LGUI(SS_LSFT(SS_TAP(X_RIGHT))) SS_DELAY(MACRO_DELAY) SS_LGUI(SS_TAP(X_C)));
+      SEND_STRING(SS_LGUI(SS_TAP(X_LEFT)) SS_DELAY(100) SS_LGUI(SS_LSFT(SS_TAP(X_RIGHT))) SS_DELAY(100) SS_LGUI(SS_TAP(X_C)));
     }
     break;
     case ST_MACRO_2:
     if (record->event.pressed) {
-      SEND_STRING(SS_LGUI(SS_TAP(X_RIGHT)) SS_DELAY(MACRO_DELAY) SS_LGUI(SS_TAP(X_BSPC)));
+      SEND_STRING(SS_LGUI(SS_TAP(X_RIGHT)) SS_DELAY(100) SS_LGUI(SS_TAP(X_BSPC)));
     }
     break;
     case ST_MACRO_3:
     if (record->event.pressed) {
-      SEND_STRING(SS_LGUI(SS_TAP(X_UP)) SS_DELAY(MACRO_DELAY) SS_TAP(X_BSPC));
+      SEND_STRING(SS_LGUI(SS_TAP(X_UP)) SS_DELAY(100) SS_TAP(X_BSPC));
     }
     break;
     case ST_MACRO_4:
     if (record->event.pressed) {
-      SEND_STRING(SS_LGUI(SS_TAP(X_DOWN)) SS_DELAY(MACRO_DELAY) SS_TAP(X_BSPC));
+      SEND_STRING(SS_LGUI(SS_TAP(X_DOWN)) SS_DELAY(100) SS_TAP(X_BSPC));
     }
     break;
     case ST_MACRO_5:
     if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_LEFT)) SS_DELAY(MACRO_DELAY) SS_LALT(SS_TAP(X_RIGHT)) SS_DELAY(MACRO_DELAY) SS_LALT(SS_LSFT(SS_TAP(X_LEFT))) SS_DELAY(MACRO_DELAY) SS_TAP(X_BSPC));
+      SEND_STRING(SS_LALT(SS_TAP(X_LEFT)) SS_DELAY(100) SS_LALT(SS_TAP(X_RIGHT)) SS_DELAY(100) SS_LALT(SS_LSFT(SS_TAP(X_LEFT))) SS_DELAY(100) SS_TAP(X_BSPC));
     }
     break;
     case ST_MACRO_6:
     if (record->event.pressed) {
-      SEND_STRING(SS_RGUI(SS_TAP(X_RIGHT)) SS_DELAY(MACRO_DELAY) SS_RGUI(SS_TAP(X_BSPC)));
+      SEND_STRING(SS_RGUI(SS_TAP(X_RIGHT)) SS_DELAY(100) SS_RGUI(SS_TAP(X_BSPC)));
     }
     break;
     case ST_MACRO_7:
     if (record->event.pressed) {
-      SEND_STRING(SS_RGUI(SS_TAP(X_RIGHT)) SS_DELAY(MACRO_DELAY) SS_RGUI(SS_TAP(X_BSPC)));
+      SEND_STRING(SS_RGUI(SS_TAP(X_RIGHT)) SS_DELAY(100) SS_RGUI(SS_TAP(X_BSPC)));
     }
     break;
     case MAC_MISSION_CONTROL:
@@ -344,7 +344,7 @@ tap_dance_action_t tap_dance_actions[] = {
         [DANCE_2] = ACTION_TAP_DANCE_TAP_HOLD(LSFT(KC_TAB), KC_CAPS),
         [DANCE_3] = ACTION_TAP_DANCE_TAP_HOLD(KC_PLUS, KC_LEFT_GUI),
         [DANCE_4] = ACTION_TAP_DANCE_TAP_HOLD(LGUI(KC_LEFT), LGUI(KC_BSPC)),
-        [DANCE_5] = ACTION_TAP_DANCE_TAP_HOLD(RGUI(KC_RIGHT), LGUI(KC_DELETE)),
-        [DANCE_6] = ACTION_TAP_DANCE_TAP_HOLD(LALT(KC_LEFT), LALT(KC_BSPC)),
-        [DANCE_7] = ACTION_TAP_DANCE_TAP_HOLD(RALT(KC_RIGHT), RALT(KC_DELETE)),
+        [DANCE_5] = ACTION_TAP_DANCE_TAP_HOLD(LALT(KC_LEFT), LALT(KC_BSPC)),
+        [DANCE_6] = ACTION_TAP_DANCE_TAP_HOLD(RALT(KC_RIGHT), RALT(KC_DELETE)),
+        [DANCE_7] = ACTION_TAP_DANCE_TAP_HOLD(RGUI(KC_RIGHT), LGUI(KC_DELETE)),
 };
