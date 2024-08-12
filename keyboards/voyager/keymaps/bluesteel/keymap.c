@@ -233,12 +233,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
     case ST_MACRO_1:
     if (record->event.pressed) {
-      SEND_STRING(SS_LGUI(SS_TAP(X_RIGHT)) SS_DELAY(MACRO_DELAY) SS_LGUI(SS_TAP(X_BSPC)));
+      SEND_STRING(SS_LGUI(SS_TAP(X_LEFT)) SS_DELAY(MACRO_DELAY) SS_LGUI(SS_LSFT(SS_TAP(X_RIGHT))) SS_DELAY(MACRO_DELAY) SS_LGUI(SS_TAP(X_C)));
     }
     break;
     case ST_MACRO_2:
     if (record->event.pressed) {
-      SEND_STRING(SS_LGUI(SS_TAP(X_LEFT)) SS_DELAY(MACRO_DELAY) SS_LGUI(SS_LSFT(SS_TAP(X_RIGHT))) SS_DELAY(MACRO_DELAY) SS_LGUI(SS_TAP(X_C)));
+      SEND_STRING(SS_LGUI(SS_TAP(X_RIGHT)) SS_DELAY(MACRO_DELAY) SS_LGUI(SS_TAP(X_BSPC)));
     }
     break;
     case ST_MACRO_3:
