@@ -3,7 +3,6 @@
 #define MOON_LED_LEVEL LED_LEVEL
 #define ML_SAFE_RANGE SAFE_RANGE
 
-
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
   ST_MACRO_0,
@@ -35,10 +34,6 @@ enum tap_dance_codes {
   DANCE_1,
   DANCE_2,
   DANCE_3,
-  DANCE_4,
-  DANCE_5,
-  DANCE_6,
-  DANCE_7,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -73,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [4] = LAYOUT_voyager(
     KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          LGUI(KC_UP),    LGUI(KC_DOWN),  KC_NO,          KC_NO,          KC_NO,          KC_TRANSPARENT,
     KC_TRANSPARENT, KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_PAGE_UP,     ST_MACRO_0,     ST_MACRO_1,     ST_MACRO_2,     KC_NO,          KC_TRANSPARENT,
-    KC_TRANSPARENT, KC_NO,          KC_LEFT_SHIFT,  KC_LEFT_CTRL,   KC_LEFT_ALT,    MO(5),                                          TD(DANCE_4),    TD(DANCE_5),    KC_UP,          TD(DANCE_6),    TD(DANCE_7),    KC_NO,
+    KC_TRANSPARENT, KC_NO,          KC_LEFT_SHIFT,  KC_LEFT_CTRL,   KC_LEFT_ALT,    MO(5),                                          LGUI(KC_LEFT),  LALT(KC_LEFT),  KC_UP,          RALT(KC_RIGHT), RGUI(KC_RIGHT), KC_NO,
     KC_TRANSPARENT, KC_NO,          KC_NO,          LCTL(KC_MINUS), LCTL(LSFT(KC_EQUAL)),KC_NO,                                          KC_PGDN,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_NO,          KC_NO,
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 LT(6,KC_ENTER), LT(6,KC_SPACE)
   ),
@@ -113,9 +108,9 @@ combo_t key_combos[COMBO_COUNT] = {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case MT(MOD_LSFT, KC_R):
-            return g_tapping_term + 20;
+            return g_tapping_term + 15;
         case MT(MOD_RCTL, KC_I):
-            return g_tapping_term + 40;
+            return g_tapping_term + 35;
         default:
             return g_tapping_term;
     }
@@ -243,12 +238,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
     case ST_MACRO_3:
     if (record->event.pressed) {
-      SEND_STRING(SS_LGUI(SS_TAP(X_UP)) SS_DELAY(MACRO_DELAY) SS_TAP(X_BSPC));
+      SEND_STRING(SS_LGUI(SS_LSFT(SS_TAP(X_UP))) SS_DELAY(MACRO_DELAY) SS_TAP(X_BSPC));
     }
     break;
     case ST_MACRO_4:
     if (record->event.pressed) {
-      SEND_STRING(SS_LGUI(SS_TAP(X_DOWN)) SS_DELAY(MACRO_DELAY) SS_TAP(X_BSPC));
+      SEND_STRING(SS_LGUI(SS_LSFT(SS_TAP(X_DOWN))) SS_DELAY(MACRO_DELAY) SS_TAP(X_BSPC));
     }
     break;
     case ST_MACRO_5:
@@ -279,10 +274,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case TD(DANCE_1):
     case TD(DANCE_2):
     case TD(DANCE_3):
-    case TD(DANCE_4):
-    case TD(DANCE_5):
-    case TD(DANCE_6):
-    case TD(DANCE_7):
         action = &tap_dance_actions[TD_INDEX(keycode)];
         if (!record->event.pressed && action->state.count && !action->state.finished) {
             tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
@@ -343,8 +334,4 @@ tap_dance_action_t tap_dance_actions[] = {
         [DANCE_1] = ACTION_TAP_DANCE_TAP_HOLD(KC_TAB, KC_CAPS),
         [DANCE_2] = ACTION_TAP_DANCE_TAP_HOLD(LSFT(KC_TAB), KC_CAPS),
         [DANCE_3] = ACTION_TAP_DANCE_TAP_HOLD(KC_PLUS, KC_LEFT_GUI),
-        [DANCE_4] = ACTION_TAP_DANCE_TAP_HOLD(LGUI(KC_LEFT), LGUI(KC_BSPC)),
-        [DANCE_5] = ACTION_TAP_DANCE_TAP_HOLD(LALT(KC_LEFT), LALT(KC_BSPC)),
-        [DANCE_6] = ACTION_TAP_DANCE_TAP_HOLD(RALT(KC_RIGHT), RALT(KC_DELETE)),
-        [DANCE_7] = ACTION_TAP_DANCE_TAP_HOLD(RGUI(KC_RIGHT), LGUI(KC_DELETE)),
 };

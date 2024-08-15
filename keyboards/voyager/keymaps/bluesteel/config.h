@@ -3,9 +3,10 @@
   See config.h options at https://docs.qmk.fm/#/config_options?id=the-configh-file
 */
 
+#define ORYX_CONFIGURATOR
 #undef IGNORE_MOD_TAP_INTERRUPT
 #undef TAPPING_TERM
-#define TAPPING_TERM 180
+#define TAPPING_TERM 185
 #define MACRO_DELAY 5
 
 #define PERMISSIVE_HOLD
