@@ -4,9 +4,12 @@
 */
 
 #define ORYX_CONFIGURATOR
+#define PERMISSIVE_HOLD
+
 #undef TAPPING_TERM
 #define TAPPING_TERM 185
 
+// don't remove this line
 #define MACRO_DELAY 5
 
 #define COMBO_TERM 80
