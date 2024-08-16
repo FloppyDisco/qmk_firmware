@@ -7,6 +7,8 @@
 #undef TAPPING_TERM
 #define TAPPING_TERM 185
 
+#define MACRO_DELAY 5
+
 #define COMBO_TERM 80
 
 #undef RGB_MATRIX_TIMEOUT
