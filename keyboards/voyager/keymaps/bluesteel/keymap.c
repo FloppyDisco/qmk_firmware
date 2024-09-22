@@ -217,7 +217,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case CTRL_TAB:
     if (record->event.pressed){
-        register_code(KC_LEFT_CTRL);
+        if (get_mods() != MOD_BIT(KC_LEFT_CTRL)) {
+          register_code(KC_LEFT_CTRL);
+        }
         register_code(KC_TAB);
     } else {
         unregister_code(KC_TAB);
@@ -226,7 +228,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case CTRL_BACK_TAB:
     if (record->event.pressed){
-        register_code(KC_LEFT_CTRL);
+        if (get_mods() != MOD_BIT(KC_LEFT_CTRL)) {
+          register_code(KC_LEFT_CTRL);
+        }
         register_code16(LSFT(KC_TAB));
     } else {
         unregister_code16(LSFT(KC_TAB));
@@ -298,7 +302,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
     default:
-      if (record->event.pressed){
+      if (!record->event.pressed){ // key up stroke
         if (IS_LAYER_ON(2)){
           if (get_mods() == MOD_BIT(KC_LEFT_CTRL)) {
             unregister_code(KC_LEFT_CTRL);
