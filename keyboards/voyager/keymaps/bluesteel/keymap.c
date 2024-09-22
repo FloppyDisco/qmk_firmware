@@ -299,7 +299,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     default:
       if (record->event.pressed){
-        if (IS_LAYER_ON(1)){
+        if (IS_LAYER_ON(2)){
           if (get_mods() == MOD_BIT(KC_LEFT_CTRL)) {
             unregister_code(KC_LEFT_CTRL);
           }
