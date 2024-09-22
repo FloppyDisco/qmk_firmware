@@ -3,12 +3,6 @@
   See config.h options at https://docs.qmk.fm/#/config_options?id=the-configh-file
 */
 
-#define ORYX_CONFIGURATOR
-#define PERMISSIVE_HOLD
-
-#undef TAPPING_TERM
-#define TAPPING_TERM 185
-
 // don't remove this line
 #define MACRO_DELAY 5
 
@@ -28,7 +22,7 @@
 #define HCS(report) host_consumer_send(record->event.pressed ? report : 0); return false
 
 #define TAPPING_TERM_PER_KEY
-#define RGB_MATRIX_STARTUP_SPD 5
+#define RGB_MATRIX_STARTUP_SPD 60
 
 #undef ENABLE_RGB_MATRIX_ALPHAS_MODS
 #undef ENABLE_RGB_MATRIX_GRADIENT_UP_DOWN
